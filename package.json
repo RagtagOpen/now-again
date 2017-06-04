@@ -1,0 +1,22 @@
+{
+  "name": "now-again",
+  "version": "0.0.1",
+  "description": "Run jobs with now.sh",
+  "main": "index.js",
+  "repository": "git@github.com:jkriss/now-again.git",
+  "author": "Jesse Kriss <jesse@jklabs.net>",
+  "license": "MIT",
+  "dependencies": {
+    "cron": "^1.2.1",
+    "cron-parser": "^2.4.0",
+    "friendly-cron": "^0.0.1",
+    "glob": "^7.1.2",
+    "glob-promise": "^3.1.0",
+    "humanize-duration": "^3.10.0",
+    "micro": "^7.3.3",
+    "mz": "^2.6.0",
+    "now-client": "^0.7.0",
+    "request-promise-native": "^1.0.4",
+    "then-sleep": "^1.0.1"
+  }
+}
