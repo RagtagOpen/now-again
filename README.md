@@ -6,6 +6,15 @@ It supports both scheduled (cron-style) jobs, as well as triggering jobs via HTT
 
 ## Why?
 
+Running one-off or scheduled tasks is often annoying, expensive, and error prone. `now-again` lets you run a set of jobs, each written in any language, using a simple and cost effective deployment platform without any server configuration.
+
+It's simpler than running tasks with AWS Lambda, and doesn't have the 5-minute runtime limit.
+
+It's cheaper and easier to deploy and manage than an EC2 instance running cron.
+
+It's better than setting up a bunch of scripts on a server, because each job can have its own dependencies and run in its own Docker container.
+
+
 ## Installation
 
 `now-again` requires node 7.6 or higher, for native async/await support.
@@ -83,7 +92,9 @@ If a `webhook` value is provided, `now-again` will send an HTTP POST to that url
       }
     }
         
-Note: the webhook is currently only called at the end of a successful run, but it will eventually be used to report errors, as well.  
+Note: the webhook is currently only called at the end of a successful run, but it will eventually be used to report errors, as well.
+
+We recommend creating a webhook with something like [Zapier](https://zapier.com/) to handle job completion notifications.
     
 ### ExposeEnv
 
