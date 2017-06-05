@@ -14,6 +14,8 @@ It's cheaper and easier to deploy and manage than an EC2 instance running cron.
 
 It's better than setting up a bunch of scripts on a server, because each job can have its own dependencies and run in its own Docker container.
 
+You can see a simple example at [now-again-example](https://github.com/RagtagOpen/now-again-example).
+
 
 ## Installation
 
