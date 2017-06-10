@@ -14,7 +14,7 @@ const pollLogs = async function(uid, opts, onMessage, filterFn) {
     const response = await now.get(url)
     response.logs.forEach(log => {
       if (logIds.includes(log.id)) return
-      const logLines = log.text.match(EOF_PREFIX) ? [log.text.trim()] : log.text.trim().split('\n')
+      const logLines = log.text.trim().split('\n')
       logLines.forEach(line => {
         lines.push(Object.assign({}, log, { text: line }))
       })

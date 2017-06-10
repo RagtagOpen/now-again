@@ -6,6 +6,9 @@
   "repository": "git@github.com:jkriss/now-again.git",
   "author": "Jesse Kriss <jesse@jklabs.net>",
   "license": "MIT",
+  "bin": {
+    "now-again": "./src/cli.js"
+  },
   "dependencies": {
     "cron": "^1.2.1",
     "cron-parser": "^2.4.0",
