@@ -40,6 +40,10 @@ class NowClient {
     return rp(this.reqOpts('GET', uri))
   }
 
+  addSecret(name, value) {
+    return rp(this.reqOpts('POST', '/secrets', {name, value}))
+  }
+
   createDeployment(body) {
     return rp(this.reqOpts('POST', '/deployments', body))
   }
