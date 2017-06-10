@@ -8,7 +8,7 @@ class NowClient {
   }
 
   getToken() {
-    if (!this.token) this.token = process.env.NOW_TOKEN
+    if (!this.token) this.token = process.env.NOW_TOKEN || process.env.AUTH_TOKEN
 
     if (!this.token) {
       try {

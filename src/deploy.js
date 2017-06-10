@@ -1,11 +1,13 @@
 const nowClient = require('now-client')
-const now = nowClient()
 const loadProject = require('./load-project')
 const pollLogs = require('./poll-logs')
 const fs = require('mz/fs')
 const Path = require('path')
 
 const run = async (jobName, input, onMessage) => {
+
+  const now = nowClient(process.env.AUTH_TOKEN)
+
   let cancel
 
   process.on('SIGINT', async () => {
