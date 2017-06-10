@@ -6,7 +6,7 @@ const Path = require('path')
 
 const run = async (jobName, input, onMessage) => {
 
-  const now = new NowClient(process.env.AUTH_TOKEN)
+  const now = new NowClient()
 
   let cancel
 

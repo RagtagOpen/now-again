@@ -8,7 +8,7 @@ class NowClient {
   }
 
   getToken() {
-    if (!this.token) this.token = process.env.NOW_TOKEN || process.env.AUTH_TOKEN
+    if (!this.token) this.token = process.env.NOW_TOKEN
 
     if (!this.token) {
       try {
@@ -19,14 +19,12 @@ class NowClient {
       }
     }
 
-    if (!this.token) throw new Error("Couldn't get token from NOW_TOKEN, AUTH_TOKEN, or ~/.now.json")
+    if (!this.token) throw new Error("Couldn't get token from NOW_TOKEN or ~/.now.json")
 
-    console.log("token is", this.token)
     return this.token
   }
 
   reqOpts(method, uri, body) {
-    console.log("building request with header", `Bearer ${this.getToken()}`)
     return {
       method: method,
       body: body,
