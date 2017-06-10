@@ -63,7 +63,7 @@ const runJobs = (jobs) => {
             json: true
           }).then(console.log)
         }
-      }).catch((err) {
+      }).catch(err => {
         console.log("Error running job:", err, err.stack)
       })
 
