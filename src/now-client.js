@@ -9,6 +9,7 @@ class NowClient {
 
   getToken() {
     if (!this.token) this.token = process.env.NOW_TOKEN || process.env.AUTH_TOKEN
+    console.log("token is",)
 
     if (!this.token) {
       try {
@@ -18,6 +19,8 @@ class NowClient {
         console.error(`Error: ${err}`)
       }
     }
+
+    if (!this.token) throw new Error("Couldn't get token from NOW_TOKEN, AUTH_TOKEN, or ~/.now.json")
 
     return this.token
   }
