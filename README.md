@@ -16,6 +16,11 @@ It's better than setting up a bunch of scripts on a server, because each job can
 
 You can see a simple example at [now-again-example](https://github.com/RagtagOpen/now-again-example).
 
+## Caveats
+
+Because each task is deployed from source, run, and then deleted, the startup time is not instantaneous. You can expect node tasks to start executing in ~20 seconds, and simple Docker tasks to start executing in 1-2 minutes.
+
+This is acceptable for most periodic jobs, but if you need something with a faster response time, you may want to keep a dedicated server running that handles your task, or use something like AWS Lambda.
 
 ## Installation
 
@@ -29,9 +34,9 @@ To run the scheduler:
 
     const nowAgain = require('now-again')
     nowAgain.scheduler()
-    
+
 *TODO: add instructions for the HTTP job runner*
-    
+
 ## Tasks
 
 `now-again` will look for tasks in a `tasks` directory in your project. Tasks can either be node-based or Docker-based.
@@ -42,7 +47,7 @@ index.js:
 
     console.log('Hello world!')
     console.log('EOF')
-    
+
 package.json:
 
     {
@@ -50,7 +55,7 @@ package.json:
         "start": "node index.js"
       }
     }
-    
+
 If you want a specific return value, you can pass a string after EOF, like `EOF: some return value`. It will handled as a string, but we recommend using JSON in most cases.
 
 ## Configuration
@@ -71,18 +76,18 @@ If you have a `task.json` file in your task directory, you can set some handy va
 ### Schedule
 
   The `schedule` can either be a cron pattern or a [friendly-cron](https://www.npmjs.com/package/friendly-cron) string.
-  
+
 ### Input
 
   `input` will be the job input. It can either be a string or a reference to an environment variable in the parent environment, like:
       "input" : {
         "env" : "SOME_JOB_INPUT"
       }
-      
+
 ### Webhook
 
 If a `webhook` value is provided, `now-again` will send an HTTP POST to that url on job completion, with the following payload format:
-  
+
     {
       date: <iso formatted date>,
       finished: true,
@@ -93,11 +98,11 @@ If a `webhook` value is provided, `now-again` will send an HTTP POST to that url
         friendly: <human-readable duration>
       }
     }
-        
+
 Note: the webhook is currently only called at the end of a successful run, but it will eventually be used to report errors, as well.
 
 We recommend creating a webhook with something like [Zapier](https://zapier.com/) to handle job completion notifications.
-    
+
 ### ExposeEnv
 
 If you add values to the `exposeEnv` array, `now-again` will map environment variables from the parent context to the task's `.env` file. This is the recommended way to pass secrets to a task.
@@ -115,11 +120,11 @@ task.json:
     {
       "exposeEnv": ["API_KEY"]
     }
-    
+
 Deploy your server with the secret mapped to an environment variable
 
     now deploy -e API_KEY=@my-api-key -e NOW_TOKEN=@now-token
-  
+
 
 ## Input
 
