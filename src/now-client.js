@@ -21,10 +21,12 @@ class NowClient {
 
     if (!this.token) throw new Error("Couldn't get token from NOW_TOKEN, AUTH_TOKEN, or ~/.now.json")
 
+    console.log("token is", this.token)
     return this.token
   }
 
   reqOpts(method, uri, body) {
+    console.log("building request with header", `Bearer ${this.getToken()}`)
     return {
       method: method,
       body: body,
