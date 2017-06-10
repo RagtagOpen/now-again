@@ -18,6 +18,7 @@
     "humanize-duration": "^3.10.0",
     "micro": "^7.3.3",
     "mz": "^2.6.0",
+    "request": "^2.81.0",
     "request-promise-native": "^1.0.4",
     "then-sleep": "^1.0.1"
   }
