@@ -24,9 +24,10 @@ class NowClient {
     return this.token
   }
 
-  reqOpts(method, uri) {
+  reqOpts(method, uri, body) {
     return {
       method: method,
+      body: body,
       uri: `https://api.zeit.co/now${uri}`,
       headers: {
         Authorization: `Bearer ${this.getToken()}`
@@ -37,6 +38,14 @@ class NowClient {
 
   get(uri) {
     return rp(this.reqOpts('GET', uri))
+  }
+
+  createDeployment(body) {
+    return rp(this.reqOpts('POST', '/deployments', body))
+  }
+
+  deleteDeployment(id) {
+    return rp(this.reqOpts('DELETE', `/deployments/${id}`))
   }
 
 

@@ -1,4 +1,4 @@
-const nowClient = require('now-client')
+const NowClient = require('./now-client')
 const loadProject = require('./load-project')
 const pollLogs = require('./poll-logs')
 const fs = require('mz/fs')
@@ -6,7 +6,7 @@ const Path = require('path')
 
 const run = async (jobName, input, onMessage) => {
 
-  const now = nowClient(process.env.AUTH_TOKEN)
+  const now = new NowClient(process.env.AUTH_TOKEN)
 
   let cancel
 
