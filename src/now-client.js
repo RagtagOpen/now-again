@@ -9,7 +9,6 @@ class NowClient {
 
   getToken() {
     if (!this.token) this.token = process.env.NOW_TOKEN || process.env.AUTH_TOKEN
-    console.log("token is",)
 
     if (!this.token) {
       try {
