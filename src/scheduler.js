@@ -63,6 +63,8 @@ const runJobs = (jobs) => {
             json: true
           }).then(console.log)
         }
+      }).catch(err => {
+        console.log("Error running job:", err, err.stack)
       })
 
     }, null, true, 'Etc/UTC')

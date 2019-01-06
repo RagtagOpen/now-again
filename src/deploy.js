@@ -1,11 +1,21 @@
-const nowClient = require('now-client')
-const now = nowClient()
+const NowClient = require('./now-client')
 const loadProject = require('./load-project')
 const pollLogs = require('./poll-logs')
 const fs = require('mz/fs')
 const Path = require('path')
 
 const run = async (jobName, input, onMessage) => {
+
+  const now = new NowClient()
+
+  let cancel
+
+  process.on('SIGINT', async () => {
+    console.log("-- canceled, deleting deployment")
+    if (typeof cancel === 'function') await cancel()
+    process.exit()
+  })
+
   const projectFiles = await loadProject(`tasks/${jobName}`)
   const log = (message) => {
     if (onMessage) onMessage({ type: 'status', text: message, date: new Date().toISOString()})
@@ -30,6 +40,8 @@ const run = async (jobName, input, onMessage) => {
   // console.log("project files:", projectFiles)
   log("-- deploying")
   const deployment = await now.createDeployment(projectFiles)
+  console.log("-- deployment info:", deployment)
+  cancel = () => now.deleteDeployment(deployment.uid)
 
   try {
     log("-- polling for logs")
