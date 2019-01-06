@@ -17,15 +17,10 @@
     "glob-promise": "^3.4.0",
     "humanize-duration": "^3.16.0",
     "micro": "^7.3.3",
-<<<<<<< HEAD
     "mz": "^2.7.0",
     "now-client": "^0.7.0",
-    "request-promise-native": "^1.0.5",
-=======
-    "mz": "^2.6.0",
-    "request": "^2.81.0",
     "request-promise-native": "^1.0.4",
->>>>>>> 896d0df58aba53e181e51f8b788ce07abc8fdd83
+    "request": "^2.81.0",
     "then-sleep": "^1.0.1"
   }
 }
